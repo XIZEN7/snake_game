@@ -122,3 +122,20 @@ while True:
         y = head.ycor()
         segments[0].goto(x,y)    
     mov()
+
+  #Collisions with the body
+    for segment in segments:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0, 0)
+            head.direction = "stop"
+            #Hide segments
+            for segment in segments:
+                segment.goto(1100, 1100)
+            #Clear segments
+            segments.clear() 
+            #Reset scoreboard
+            score = 0
+            text.clear()
+            text.write("Score: {}     High Score : {}".format(score, high_score), align = "center", font = ("Courier", 20, "normal"))               
+    time.sleep(postpone)
