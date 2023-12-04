@@ -54,3 +54,41 @@ def left():
     head.direction = "left"
 def right():
     head.direction = "right"
+
+def mov():
+    if head.direction == "up":
+        y = head.ycor()
+        head.sety(y + 20)
+    if head.direction == "down":
+        y = head.ycor()
+        head.sety(y - 20)
+    if head.direction == "left":
+        x = head.xcor()
+        head.setx(x - 20)
+    if head.direction == "right":
+        x = head.xcor()
+        head.setx(x + 20)
+
+#Keyboard
+wn.listen()
+wn.onkeypress(up, "Up")
+wn.onkeypress(down, "Down")
+wn.onkeypress(left, "Left")
+wn.onkeypress(right, "Right")       
+
+while True:
+    wn.update()
+    #Edge collisions
+    if head.xcor() > 280 or head.xcor() < -280 or head.ycor() > 280 or head.ycor() < -280:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction = "stop"
+        #Hide segments
+        for segment in segments:
+            segment.goto(1000, 1000)
+        #Clear Segments
+        segments.clear()        
+        #Reset scoreboard
+        score = 0
+        text.clear()
+        text.write("Score: {}     High Score : {}".format(score, high_score), align = "center", font = ("Courier", 20, "normal"))
