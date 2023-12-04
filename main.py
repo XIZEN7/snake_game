@@ -110,3 +110,15 @@ while True:
            high_score = score
        text.clear()
        text.write("Score: {}     High Score : {}".format(score, high_score), align = "center", font = ("Courier", 20, "normal"))
+#Move the snake's body 
+    totalseg = len(segments)
+    for index in range(totalseg -1, 0, -1):
+        x = segments[index - 1].xcor()
+        y = segments[index - 1].ycor()
+        segments[index].goto(x,y)
+
+    if totalseg > 0:
+        x = head.xcor()
+        y = head.ycor()
+        segments[0].goto(x,y)    
+    mov()
