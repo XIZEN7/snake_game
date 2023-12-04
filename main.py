@@ -92,3 +92,21 @@ while True:
         score = 0
         text.clear()
         text.write("Score: {}     High Score : {}".format(score, high_score), align = "center", font = ("Courier", 20, "normal"))
+ #Food collisions
+    if head.distance(food) < 20:
+       x = random.randint(-280, 280)
+       y = random.randint(-280, 280)
+       food.goto(x,y)
+
+       new_segment = turtle.Turtle()
+       new_segment.speed(0)
+       new_segment.shape("square")
+       new_segment.color("green")
+       new_segment.penup()
+       segments.append(new_segment)
+       #Increase score
+       score += 10
+       if score > high_score:
+           high_score = score
+       text.clear()
+       text.write("Score: {}     High Score : {}".format(score, high_score), align = "center", font = ("Courier", 20, "normal"))
